@@ -15,11 +15,20 @@ app.directive("interactiveTable",["$http",function($http){ // Initiating your Ta
       $scope.sortByCol = null;//Column Name which should be used to sort the table
       $scope.categorySelected = -1;//Selected Category (buttons above)
       $scope.limit = null;//How much rows to show
+      $scope.searchQuery = "";
+
+      $scope.searchFilter = function(o,x){
+        if(x==="")return true;
+        for(var i=0;i<$scope.meta.cols.length;i++){
+          if(o[$scope.meta.cols[i].key].toLowerCase().indexOf(x.toLowerCase())!== -1)return true;
+        }
+        return false;
+      };  
 
 
       $scope.categoryFilter = function(x){//This function filters rows for Category
-        if($scope.categorySelected===-1)return true;
-        else return x._category===$scope.categorySelected;
+        if($scope.categorySelected===-1)return $scope.searchFilter(x,$scope.searchQuery);
+        else return x._category===$scope.categorySelected?$scope.searchFilter(x,$scope.searchQuery):false;
       };
 
       $scope.setCategory = function(id){//This function  sets the selected Category on button click

@@ -5,6 +5,8 @@
     <!-- Replacing 'selected' in ng-class with the class you want it to have when currently selected -->
     <!-- The limit selection: -->
     <select style="float:left;" ng-options="lim.display for lim in meta.limits" ng-model="limit"></select>
+
+    <input type="text" ng-model="searchQuery" placeholder="Search..."/>
     
     <div style="clear:both;"></div>
   </div>
