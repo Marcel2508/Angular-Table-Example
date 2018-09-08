@@ -15,10 +15,10 @@
       "_category":2
     },
     {
-      "command":"fufu",
-      "description":"yuyu",
-      "usage":"/mumu",
-      "permission":"dudu",
+      "command":"yuyu",
+      "description":"huhu",
+      "usage":"/yoyo",
+      "permission":"koko",
       "_category":3
     }
   ],
@@ -43,6 +43,7 @@
       {"display":"50","amount":50},
       {"display":"100","amount":100}
     ],
-    "defaultLimitIndex":0
+    "defaultLimitIndex":0,
+    "defaultCategory":-1
   }
 }

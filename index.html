@@ -10,8 +10,8 @@
 
       <div>
         <!-- The category Selection buttons: -->
-        <button style="float:left;margin-right:5px;" ng-repeat="c in meta.categories track by $index" ng-click="setCategory(c.id)">{{c.display}}</button>
-        
+        <button style="float:left;margin-right:5px;" ng-repeat="c in meta.categories track by $index" ng-click="setCategory(c.id)" ng-class="{'selected':c.id===categorySelected}">{{c.display}}</button>
+        <!-- Replacing 'selected' in ng-class with the class you want it to have when currently selected -->
         <!-- The limit selection: -->
         <select style="float:left;" ng-options="lim.display for lim in meta.limits" ng-model="limit"></select>
         

@@ -40,9 +40,10 @@ app.controller("yourTableController",["$scope","$http",function($scope,$http){ /
     ////// THIS IS ONLY BECAUSE I TESTED IT WITHOUT A WEBSERVER
     ////// AND CHROME BLOCKS CORS ON file:// REQUESTS -.- ^^
     ///// YOU CAN REMOVE THE COMPLETE BLOCK BETWEEN THIS TWO COMMENTS ... (1)
-    var res = { "data":[ { "command":"123", "description":"hello world", "usage":"/test123", "permission":"test-perm", "_category":1 }, { "command":"germany", "description":"hallo welt", "usage":"/Deutschland<3", "permission":"germany", "_category":2 }, { "command":"fufu", "description":"yuyu", "usage":"/mumu", "permission":"dudu", "_category":3 } ], "meta":{ "cols":[ {"display":"Command","key":"command"}, {"display":"Description","key":"description"}, {"display":"Usage","key":"usage"}, {"display":"Permission","key":"permission"} ], "defaultSortOrder":"command", "defaultLimitIndex":0, "categories":[ {"display":"Core","id":1}, {"display":"Info","id":2}, {"display":"Games","id":3} ], "limits":[ {"display":"2","amount":2}, {"display":"5","amount":5}, {"display":"10","amount":10}, {"display":"20","amount":20}, {"display":"50","amount":50}, {"display":"100","amount":100} ] } };
+    var res = { "data":[ { "command":"123", "description":"hello world", "usage":"/test123", "permission":"test-perm", "_category":1 }, { "command":"germany", "description":"hallo welt", "usage":"/Deutschland<3", "permission":"germany", "_category":2 }, { "command":"fufu", "description":"yuyu", "usage":"/mumu", "permission":"dudu", "_category":3 } ], "meta":{ "cols":[ {"display":"Command","key":"command"}, {"display":"Description","key":"description"}, {"display":"Usage","key":"usage"}, {"display":"Permission","key":"permission"} ], "defaultSortOrder":"command", "defaultLimitIndex":0, "defaultCategory":-1,"categories":[ {"display":"Core","id":1}, {"display":"Info","id":2}, {"display":"Games","id":3} ], "limits":[ {"display":"2","amount":2}, {"display":"5","amount":5}, {"display":"10","amount":10}, {"display":"20","amount":20}, {"display":"50","amount":50}, {"display":"100","amount":100} ] } };
     $scope.sortByCol = res.meta.defaultSortOrder;
     $scope.limit = res.meta.limits[res.meta.defaultLimitIndex];
+    $scope.categorySelected=res.meta.defaultCategory;
     $scope.data = res.data;
     $scope.meta = res.meta;
     return;
@@ -52,6 +53,7 @@ app.controller("yourTableController",["$scope","$http",function($scope,$http){ /
     $http({url:"data.json",method:"GET"}).then(function(res){
       $scope.sortByCol = res.data.meta.defaultSortOrder;
       $scope.limit = res.data.meta.limits[res.data.meta.defaultLimitIndex];
+      $scope.categorySelected = res.data.meta.defaultCategory;
 
       $scope.data = res.data.data;
       $scope.meta = res.data.meta;
