@@ -1,0 +1,27 @@
+<div ng-cloak><!-- THIS IS YOUR ANGULAR APP... -->
+  <div>
+    <!-- The category Selection buttons: -->
+    <button style="float:left;margin-right:5px;" ng-repeat="c in meta.categories track by $index" ng-click="setCategory(c.id)" ng-class="{'selected':c.id===categorySelected}">{{c.display}}</button>
+    <!-- Replacing 'selected' in ng-class with the class you want it to have when currently selected -->
+    <!-- The limit selection: -->
+    <select style="float:left;" ng-options="lim.display for lim in meta.limits" ng-model="limit"></select>
+    
+    <div style="clear:both;"></div>
+  </div>
+  <br/><br/>
+  <!-- The main table: -->
+  <table style="border-collapse:collapse;border:1px solid#000000;"><!-- THIS IS THE TABLE CONTROLLER -->
+    <thead>
+      <!-- Interactive head row -->
+      <tr>
+        <th ng-repeat="c in meta.cols track by $index" ng-click="setSortOrder(c.key)" style="border:1px solid#000000;cursor:pointer;">{{c.display}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows -->
+      <tr ng-repeat="r in data | filter:categoryFilter | orderBy:sortByCol:reverseSort:sortFunction | limitTo:limit.amount track by $index">
+        <td ng-repeat="c in meta.cols track by $index" style="border:1px solid#000000;">{{r[c.key]}}</td>
+      </tr>
+    </tbody>
+  </table><!-- END OF THE SCOPE OF THE CONTROLLER -->
+</div><!-- END OF THE APP -->
