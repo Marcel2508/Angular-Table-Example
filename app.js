@@ -51,7 +51,7 @@ app.controller("yourTableController",["$scope","$http",function($scope,$http){ /
     //HTTP request to data.json. -- not working with file://
     $http({url:"data.json",method:"GET"}).then(function(res){
       $scope.sortByCol = res.data.meta.defaultSortOrder;
-      $scope.limit = res.data.meta.defaultLimit;
+      $scope.limit = res.data.meta.limits[res.data.meta.defaultLimit];
 
       $scope.data = res.data.data;
       $scope.meta = res.data.meta;
